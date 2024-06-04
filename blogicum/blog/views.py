@@ -45,6 +45,7 @@ posts = [
 
 reversed_posts = sorted(posts, key=lambda x: x['id'], reverse=True)
 
+
 def index(request):
     template = 'blog/index.html'
     context = {'posts': reversed_posts}
