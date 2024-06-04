@@ -43,16 +43,17 @@ posts = [
     },
 ]
 
+reversed_posts = sorted(posts, key=lambda x: x['id'], reverse=True)
 
 def index(request):
     template = 'blog/index.html'
-    context = {'posts': posts}
+    context = {'posts': reversed_posts}
     return render(request, template, context)
 
 
 def post_detail(request, id: int):
     template = 'blog/detail.html'
-    context = posts[id]
+    context = {'post': posts[id]}
     return render(request, template, context)
 
 
