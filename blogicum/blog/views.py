@@ -1,4 +1,6 @@
+from django.http import Http404
 from django.shortcuts import render
+
 
 posts = [
     {
@@ -54,6 +56,9 @@ def index(request):
 
 def post_detail(request, id: int):
     template = 'blog/detail.html'
+    if id > len(posts) - 1:
+        raise Http404(f'Страница с постом №{id} отсутствует')
+
     context = {'post': posts[id]}
     return render(request, template, context)
 
